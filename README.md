@@ -1,109 +1,104 @@
-# Org
+Nx Fullstack Practice Project
+This repository is a small fullstack practice project built with Nx.
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+The goal of this project was to explore the Nx monorepo workflow and experiment with a simple full‑stack setup.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+It includes:
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+Frontend: Next.js
+Backend: Express
+Monorepo tooling: Nx
+This project was also my first hands‑on experience writing a backend with Express inside an Nx workspace.
 
-## Generate a library
+Project Structure
+The workspace follows a typical Nx monorepo structure:
 
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
+apps/
 
-## Run tasks
+frontend → Next.js application
 
-To build the library use:
+backend → Express API server
 
-```sh
-npx nx build pkg1
-```
+packages/
 
-To run any task with Nx use:
+shared → shared TypeScript utilities used by apps
 
-```sh
-npx nx <target> <project-name>
-```
+Features
+Simple form page available at:
+text
+/user
+When you open this route in the frontend, you can submit data through the form.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+The backend stores submitted entries in a local JSON file (db.json).
+Demonstrates frontend → backend communication inside an Nx workspace.
+Shows how to structure shared code using libraries in Nx.
+Running the Project
+Install dependencies:
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+text
+npm install
+Run the frontend:
 
-## Versioning and releasing
+text
+npx nx serve frontend
+Run the backend:
 
-To version and release the library use
+text
+npx nx serve backend
+After starting both services, open the frontend and navigate to:
 
-```
-npx nx release
-```
+text
+http://localhost:3000/user
+to test the form.
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+Useful Nx Commands
+Run a task for a specific project:
 
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+text
+npx nx <target> <project>
+Examples:
 
-## Keep TypeScript project references up to date
+Run the frontend:
 
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
+text
+npx nx serve frontend
+Run the backend:
 
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
+text
+npx nx serve backend
+Build a project:
 
-```sh
-npx nx sync
-```
+text
+npx nx build <project>
+Visualize the dependency graph of the workspace:
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
+text
+npx nx graph
+Reset Nx cache:
 
-```sh
-npx nx sync:check
-```
+text
+npx nx reset
+Useful Nx Links
+Nx Documentation
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+https://nx.dev
 
-## Set up CI!
+Nx Concepts
 
-### Step 1
+https://nx.dev/concepts
 
-To connect to Nx Cloud, run the following command:
+Nx Task Running
 
-```sh
-npx nx connect
-```
+https://nx.dev/features/run-tasks
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+Nx Plugins
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+https://nx.dev/concepts/nx-plugins
 
-### Step 2
+Purpose of This Project
+This project was created mainly for:
 
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Learning Nx monorepo architecture
+Practicing Next.js + Express integration
+Experimenting with shared libraries inside Nx
+Getting hands‑on experience building a simple fullstack setup
