@@ -1,104 +1,286 @@
-Nx Fullstack Practice Project
+# Nx Fullstack Practice Project
+
 This repository is a small fullstack practice project built with Nx.
 
-The goal of this project was to explore the Nx monorepo workflow and experiment with a simple full‑stack setup.
+The goal of this project was to explore the Nx monorepo workflow and experiment with a simple full‑stack setup using Next.js and Express inside a monorepo architecture.
 
-It includes:
+---
 
-Frontend: Next.js
-Backend: Express
-Monorepo tooling: Nx
-This project was also my first hands‑on experience writing a backend with Express inside an Nx workspace.
+# Tech Stack
 
-Project Structure
-The workspace follows a typical Nx monorepo structure:
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js |
+| Backend | Express |
+| Monorepo Tooling | Nx |
+| Language | TypeScript |
+| Package Manager | npm |
 
+This project was also my first hands‑on experience building a backend application with Express inside an Nx workspace.
+
+---
+
+# Project Structure
+
+```txt
 apps/
-
-frontend → Next.js application
-
-backend → Express API server
+  frontend   → Next.js application
+  backend    → Express API server
 
 packages/
+  shared     → Shared TypeScript utilities
+```
 
-shared → shared TypeScript utilities used by apps
+---
 
-Features
-Simple form page available at:
-text
+# Features
+
+- Simple form page available at:
+
+```txt
 /user
-When you open this route in the frontend, you can submit data through the form.
+```
 
-The backend stores submitted entries in a local JSON file (db.json).
-Demonstrates frontend → backend communication inside an Nx workspace.
-Shows how to structure shared code using libraries in Nx.
-Running the Project
-Install dependencies:
+- Submit form data from frontend to backend
+- Backend stores submitted entries inside a local JSON database (`db.json`)
+- Demonstrates frontend ↔ backend communication in an Nx monorepo
+- Shows how to structure and share reusable code using Nx libraries
+- Practice project for understanding Nx architecture and workflows
 
-text
+---
+
+# Getting Started
+
+## 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+```
+
+Enter the project directory:
+
+```bash
+cd <project-folder>
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
 npm install
-Run the frontend:
+```
 
-text
-npx nx serve frontend
-Run the backend:
+This installs:
 
-text
-npx nx serve backend
-After starting both services, open the frontend and navigate to:
+- Nx
+- Next.js
+- Express
+- TypeScript
+- Nx plugins
+- All workspace dependencies
 
-text
+---
+
+## 3. Run the Frontend
+
+```bash
+npx nx show @org/frontend
+npx nx dev @org/frontend
+```
+
+Frontend URL:
+
+```txt
+http://localhost:3000
+```
+
+Form page:
+
+```txt
 http://localhost:3000/user
-to test the form.
+```
 
-Useful Nx Commands
-Run a task for a specific project:
+---
 
-text
-npx nx <target> <project>
-Examples:
+## 4. Run the Backend
 
-Run the frontend:
-
-text
-npx nx serve frontend
-Run the backend:
-
-text
+```bash
 npx nx serve backend
-Build a project:
+```
 
-text
-npx nx build <project>
-Visualize the dependency graph of the workspace:
+The backend creates and updates:
 
-text
-npx nx graph
+```txt
+apps/backend/data/db.json
+```
+
+---
+
+# Useful Nx Commands
+
+| Purpose | Command |
+|---|---|
+| Install dependencies | `npm install` |
+| Show all projects | `npx nx show projects` |
+| Show project details | `npx nx show project frontend` |
+| Run frontend | `npx nx serve frontend` |
+| Run backend | `npx nx serve backend` |
+| Build frontend | `npx nx build frontend` |
+| Build backend | `npx nx build backend` |
+| Build shared package | `npx nx build shared` |
+| Run tests | `npx nx test <project>` |
+| Lint project | `npx nx lint <project>` |
+| Reset Nx cache | `npx nx reset` |
+| Open dependency graph | `npx nx graph` |
+| Run any target | `npx nx <target> <project>` |
+
+---
+
+# Useful Git Commands
+
+| Purpose | Command |
+|---|---|
+| Clone repository | `git clone <repo-url>` |
+| Check changes | `git status` |
+| Add files | `git add .` |
+| Commit changes | `git commit -m "message"` |
+| Push changes | `git push` |
+| Pull latest changes | `git pull` |
+
+---
+
+# Common Problems & Fixes
+
+## Problem: Cannot find configuration for task
+
+Example:
+
+```txt
+NX Cannot find configuration for task frontend:serve
+```
+
+### Fixes
+
+Check available projects:
+
+```bash
+npx nx show projects
+```
+
+Check project details:
+
+```bash
+npx nx show project frontend
+```
+
 Reset Nx cache:
 
-text
+```bash
 npx nx reset
-Useful Nx Links
-Nx Documentation
+```
 
-https://nx.dev
+Reinstall dependencies:
 
-Nx Concepts
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
-https://nx.dev/concepts
+---
 
-Nx Task Running
+## Problem: Nx Plugins Missing
 
-https://nx.dev/features/run-tasks
+Check installed plugins:
 
-Nx Plugins
+```bash
+npm ls @nx/next
+npm ls @nx/express
+```
 
-https://nx.dev/concepts/nx-plugins
+Install missing plugin:
 
-Purpose of This Project
+```bash
+npm install -D @nx/next
+```
+
+---
+
+## Problem: Node Version Issues
+
+Recommended Node.js versions:
+
+```txt
+v20 or v22
+```
+
+Check current version:
+
+```bash
+node -v
+```
+
+---
+
+# Nx Dependency Graph
+
+Visualize project relationships:
+
+```bash
+npx nx graph
+```
+
+This helps understand:
+
+- App dependencies
+- Shared libraries
+- Monorepo structure
+- Build relationships
+
+---
+
+# Useful Nx Links
+
+| Topic | Link |
+|---|---|
+| Nx Documentation | https://nx.dev |
+| Nx Concepts | https://nx.dev/concepts |
+| Nx Task Running | https://nx.dev/features/run-tasks |
+| Nx Plugins | https://nx.dev/concepts/nx-plugins |
+| Next.js | https://nextjs.org |
+| Express | https://expressjs.com |
+
+---
+
+# Purpose of This Project
+
 This project was created mainly for:
 
-Learning Nx monorepo architecture
-Practicing Next.js + Express integration
-Experimenting with shared libraries inside Nx
-Getting hands‑on experience building a simple fullstack setup
+- Learning Nx monorepo architecture
+- Practicing Next.js + Express integration
+- Experimenting with shared libraries inside Nx
+- Understanding workspace-based development
+- Getting hands‑on experience building a simple fullstack setup
+
+---
+
+# Notes
+
+- Always use `npx nx ...` commands instead of global Nx commands.
+- If Nx behaves unexpectedly, try:
+
+```bash
+npx nx reset
+```
+
+- If the backend cannot create `db.json`, make sure the data directory exists:
+
+```txt
+apps/backend/data/
+```
+
+---
+
+# Author
+
+Created as a personal learning and practice project for exploring Nx fullstack development.
